@@ -25,7 +25,7 @@ function App() {
           <div>
             {/* Render buttons for each PDF file */}
             {pdfFiles.map((file) => (
-              <button key={file.id} onClick={() => window.location.href = `/dergi/${file.id}`}>
+              <button className='button' key={file.id} onClick={() => window.location.href = `/dergi/${file.id}`}>
                 {file.name}
               </button>
             ))}

@@ -13,6 +13,23 @@
   margin-bottom: 20px; /* Adjust margin as needed */
 }
 
+.button {
+  background-color: #61dafb; /* Button background color */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  border-radius: 25px; /* Rounded corners */
+  padding: 10px 20px; /* Vertical and horizontal padding */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s ease, transform 0.2s; /* Smooth transition effects */
+}
+
+.button:hover {
+  background-color: #21a1f1; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+
 /* index.css */
 body {
   background-color: #282c34; /* Set your desired background color here */
