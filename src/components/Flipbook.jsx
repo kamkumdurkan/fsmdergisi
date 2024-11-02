@@ -17,7 +17,7 @@ function Flipbook({ pdfPath, background }) {
     function onDocumentLoadError(error) {
         console.error("Error loading PDF:", error);
         setLoading(false); // Hide loading on error
-        
+
     }
 
     function pagesList() {
@@ -33,7 +33,7 @@ function Flipbook({ pdfPath, background }) {
     }
 
     return (
-        <div className="flipbook-background" style={{ backgroundImage: `url(http://fsmdergisi.vercel.app/arkaplanlar/${background})` }}>
+        <div className="flipbook-background" style={{ backgroundImage: `url(https://fsmdergisi.vercel.app/arkaplanlar/${background})` }}>
             {loading && (
                 <div className="loading-overlay">
                     <img src={logo} className="App-logo" alt="Loading..." />
