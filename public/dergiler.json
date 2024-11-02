@@ -3,7 +3,8 @@
     {
       "id": "eylul-dergisi",
       "name": "Eylül Dergisi",
-      "path": "http://fsmdergisi.vercel.app/dergiler/eylul-dergisi.pdf"
+      "path": "/eylul-dergisi.pdf",
+      "background": "arkaplan.png"
     }
   ]
 }

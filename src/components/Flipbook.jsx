@@ -1,21 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 import '../Modal.css';
+import './Flipbook.css';
+import logo from '../logo512.png';
 
-function Flipbook({ pdfPath }) {
+function Flipbook({ pdfPath, background }) {
     const [numPages, setNumPages] = useState(null);
     const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        // Reset states when pdfPath changes
-        setNumPages(null);
-        setLoading(true);
-    }, [pdfPath]); // Re-run this effect when pdfPath changes
-
+    pdfPath="http://fsmdergisi.vercel.app/dergiler" + pdfPath
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
-        setLoading(false); // Hide loading once PDF is fully loaded
+        setLoading(false);
+    }
+
+    function onDocumentLoadError(error) {
+        console.error("Error loading PDF:", error);
+        setLoading(false); // Hide loading on error
+        
     }
 
     function pagesList() {
@@ -31,13 +33,19 @@ function Flipbook({ pdfPath }) {
     }
 
     return (
-        <div>
+        <div className="flipbook-background" style={{ backgroundImage: `url(http://fsmdergisi.vercel.app/arkaplanlar/${background})` }}>
+            {loading && (
+                <div className="loading-overlay">
+                    <img src={logo} className="App-logo" alt="Loading..." />
+                </div>
+            )}
             <Document
-                file={pdfPath} // Use the dynamic path from props
+                file={pdfPath}
                 onLoadSuccess={onDocumentLoadSuccess}
-                className='modal-90w'
+                onLoadError={onDocumentLoadError}
+                className="modal-90w"
             >
-                {!loading && ( // Render the flipbook only when the PDF is loaded
+                {!loading && (
                     <HTMLFlipBook width={500} height={707}>
                         {pagesList()}
                     </HTMLFlipBook>
@@ -45,6 +53,7 @@ function Flipbook({ pdfPath }) {
             </Document>
         </div>
     );
+    
 }
 
 export default Flipbook;
