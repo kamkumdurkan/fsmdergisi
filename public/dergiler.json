@@ -3,7 +3,7 @@
     {
       "id": "eylul-dergisi",
       "name": "Eylül Dergisi",
-      "path": "http://localhost:3000/dergiler/eylul-dergisi.pdf"
+      "path": "http://fsmdergisi.vercel.app/dergiler/eylul-dergisi.pdf"
     }
   ]
 }
