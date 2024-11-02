@@ -40,19 +40,23 @@ function App() {
     </div>
   );
 }
-
 function FlipbookLoader({ pdfFiles }) {
   const { id } = useParams();
-  const pdfPath = pdfFiles.find(file => file.id === id)?.path; // Assuming each file has a 'path' attribute
+  // Constructing the PDF path using HTTPS
+  const pdfPath = pdfFiles.find(file => file.id === id)?.path.replace('http://', 'https://');
 
   if (pdfPath) {
-    return <>
-    <img src={logo} className="App-logo" alt="logo" />
-    <Flipbook pdfPath={pdfPath} /></>
+    return (
+      <>
+        <img src={logo} className="App-logo" alt="logo" />
+        <Flipbook pdfPath={pdfPath} />
+      </>
+    );
   } else {
-    return <><div>PDF bulunamadı.</div></>
+    return <div>PDF bulunamadı.</div>;
   }
 }
+
 
 // Wrap your App component with Router
 export default function AppWithRouter() {
