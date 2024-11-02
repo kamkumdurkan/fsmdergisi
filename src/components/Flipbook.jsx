@@ -8,7 +8,7 @@ import logo from '../logo512.png';
 function Flipbook({ pdfPath, background }) {
     const [numPages, setNumPages] = useState(null);
     const [loading, setLoading] = useState(true);
-    pdfPath="http://fsmdergisi.vercel.app/dergiler" + pdfPath
+    pdfPath="https://fsmdergisi.vercel.app/dergiler" + pdfPath
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
         setLoading(false);
