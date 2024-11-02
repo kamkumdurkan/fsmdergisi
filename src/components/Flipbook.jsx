@@ -16,7 +16,7 @@ function Flipbook({ pdfPath, background }) {
 
     function onDocumentLoadError(error) {
         console.error("Error loading PDF:", error);
-        setLoading(false); // Hide loading on error
+        setLoading(false);
 
     }
 
