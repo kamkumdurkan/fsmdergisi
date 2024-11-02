@@ -11,7 +11,7 @@ function App() {
     fetch('/dergiler.json')
       .then(response => response.json())
       .then(data => setPdfFiles(data.dergiler))
-      .catch(error => console.error('PDF dosyaları alınamadı:', error));
+      .catch(error => console.error('Dergi dosyaları alınamadı:', error));
   }, []);
 
   // Determine if we are on the flipbook page
@@ -53,7 +53,7 @@ function FlipbookLoader({ pdfFiles }) {
       </>
     );
   } else {
-    return <div>PDF bulunamadı.</div>;
+    return <div>Dergi bulunamadı.</div>;
   }
 }
 
