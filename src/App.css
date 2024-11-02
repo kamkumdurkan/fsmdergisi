@@ -1,11 +1,24 @@
 .App {
   text-align: center;
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  min-height: 100vh; /* Ensure it takes the full height */
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 50vmin;
   pointer-events: none;
+  margin-bottom: 20px; /* Adjust margin as needed */
 }
+
+/* index.css */
+body {
+  background-color: #282c34; /* Set your desired background color here */
+  font-family: Arial, sans-serif; /* Optional: set your preferred font */
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

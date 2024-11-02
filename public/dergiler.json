@@ -1,0 +1,9 @@
+{
+  "dergiler": [
+    {
+      "id": "eylul-dergisi",
+      "name": "Eylül Dergisi",
+      "path": "http://localhost:3000/dergiler/eylul-dergisi.pdf"
+    }
+  ]
+}
