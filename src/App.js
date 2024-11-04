@@ -21,7 +21,7 @@ function App() {
             {!isFlipbookPage && (
                 <header className="App-header">
                   
-                    <h1>FSM DergisiB</h1>
+                    <h1>FSM Dergisi</h1>
                     <div>
                         {pdfFiles.map((file) => (
                             <button className='button' key={file.id} onClick={() => window.location.href = `/dergi/${file.id}`}>

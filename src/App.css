@@ -15,6 +15,7 @@
 }
 
 .button {
+  display: block; /* Make buttons block elements */
   background-color: #61dafb; /* Button background color */
   color: white; /* Text color */
   border: none; /* Remove default border */
@@ -24,7 +25,9 @@
   cursor: pointer; /* Change cursor to pointer on hover */
   z-index: 100000;
   transition: background-color 0.3s ease, transform 0.2s; /* Smooth transition effects */
+  margin: 10px 0; /* Add margin between buttons */
 }
+
 
 .button:hover {
   background-color: #21a1f1; /* Darker shade on hover */
