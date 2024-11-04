@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useParams, useLocation } from 'react-router-dom';
 import './App.css';
 import Flipbook from './components/Flipbook';
-
+// FSM
 function App() {
     const [pdfFiles, setPdfFiles] = useState([]);
     const location = useLocation();
