@@ -5,12 +5,6 @@
       "name": "Eylül Dergisi",
       "path": "/eylul-dergisi.pdf",
       "background": "arkaplan.png"
-    },
-    {
-      "id": "bos-dergi",
-      "name": "Boş Dergi",
-      "path": "/10-pg-blank.pdf",
-      "background": "arkaplan.png"
     }
   ]
 }
