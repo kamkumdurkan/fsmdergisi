@@ -1,62 +1,36 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, useParams, useLocation } from 'react-router-dom';
-import './App.css';
-import Flipbook from './components/Flipbook';
-// FSM
+import React, { useState } from "react";
+import MagazineReader from "./MagazineReader";
+import "./App.css"
+const magazines = ["Aralık Ayı Dergisi"]; // Klasör isimleri
+
 function App() {
-    const [pdfFiles, setPdfFiles] = useState([]);
-    const location = useLocation();
+  const [selectedMagazine, setSelectedMagazine] = useState(null);
 
-    useEffect(() => {
-        fetch('/dergiler.json')
-            .then(response => response.json())
-            .then(data => setPdfFiles(data.dergiler))
-            .catch(error => console.error('Dergi dosyaları alınamadı:', error));
-    }, []);
-
-    const isFlipbookPage = location.pathname.startsWith('/dergi/');
-
-    return (
-        <div className="App">
-            {!isFlipbookPage && (
-                <header className="App-header">
-                  
-                    <h1>FSM Dergisi</h1>
-                    <div>
-                        {pdfFiles.map((file) => (
-                            <button className='button' key={file.id} onClick={() => window.location.href = `/dergi/${file.id}`}>
-                                {file.name}
-                            </button>
-                        ))}
-                    </div>
-                </header>
-            )}
-
-            <Routes>
-                <Route path="/dergi/:id" element={<FlipbookLoader pdfFiles={pdfFiles} />} />
-            </Routes>
+  return (
+    <div style={{ padding: "20px" }}>
+      {selectedMagazine ? (
+        <MagazineReader magazineName={selectedMagazine} />
+      ) : (
+        <div className="cont">
+          <h1>Fatih Sultan Mehmet İmam Hatip Ortaokulu E-Dergisi</h1>
+          {magazines.map((magazine) => (
+            <button className="batın"
+              key={magazine}
+              onClick={() => setSelectedMagazine(magazine)}
+              style={{
+                margin: "10px",
+                padding: "10px 20px",
+                fontSize: "16px",
+                cursor: "pointer",
+              }}
+            >
+              {magazine}
+            </button>
+          ))}
         </div>
-    );
+      )}
+    </div>
+  );
 }
 
-function FlipbookLoader({ pdfFiles }) {
-    const { id } = useParams();
-    const pdfData = pdfFiles.find(file => file.id === id);
-
-    if (pdfData) {
-        const { path: pdfPath, background } = pdfData;
-        return (
-            <Flipbook pdfPath={pdfPath} background={background} />
-        );
-    } else {
-        return <div>PDF bulunamadı.</div>;
-    }
-}
-
-export default function AppWithRouter() {
-    return (
-        <Router>
-            <App />
-        </Router>
-    );
-}
+export default App;

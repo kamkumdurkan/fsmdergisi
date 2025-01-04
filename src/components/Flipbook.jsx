@@ -1,59 +1,53 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
-import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
-import '../Modal.css';
 import './Flipbook.css';
-import logo from '../logo512.png';
 
-function Flipbook({ pdfPath, background }) {
-    const [numPages, setNumPages] = useState(null);
+function Flipbook({ pdfPath, background, totalPages }) {
+    const [pages, setPages] = useState([]);
     const [loading, setLoading] = useState(true);
-    pdfPath="https://fsmdergisi.vercel.app/dergiler" + pdfPath
-    function onDocumentLoadSuccess({ numPages }) {
-        setNumPages(numPages);
+
+    useEffect(() => {
+        // Sayfa URL'lerini oluştur
+        const pageUrls = Array.from({ length: totalPages }, (_, index) => {
+            return `/dergiler/${pdfPath}#page=${index + 1}`;
+        });
+        setPages(pageUrls);
         setLoading(false);
-    }
-
-    function onDocumentLoadError(error) {
-        console.error("Error loading PDF:", error);
-        setLoading(false);
-
-    }
-
-    function pagesList() {
-        const pages = [];
-        for (let i = 1; i <= numPages; i++) {
-            pages.push(
-                <div key={i}>
-                    <Page width={500} pageNumber={i} />
-                </div>
-            );
-        }
-        return pages;
-    }
+    }, [pdfPath, totalPages]);
 
     return (
-        <div className="flipbook-background" style={{ backgroundImage: `url(https://fsmdergisi.vercel.app/arkaplanlar/${background})` }}>
-            {loading && (
-                <div className="loading-overlay">
-                    <img src={logo} className="App-logo" alt="Loading..." />
-                </div>
-            )}
-            <Document
-                file={pdfPath}
-                onLoadSuccess={onDocumentLoadSuccess}
-                onLoadError={onDocumentLoadError}
-                className="modal-90w"
-            >
-                {!loading && (
-                    <HTMLFlipBook width={500} height={707}>
-                        {pagesList()}
-                    </HTMLFlipBook>
+        <div
+            className="flipbook-background"
+            style={{
+                backgroundImage: `url(${background})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                width: '100%',
+                height: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
+            <HTMLFlipBook width={500} height={707}>
+                {loading ? (
+                    <p>Yükleniyor...</p>
+                ) : (
+                    pages.map((pageUrl, index) => (
+                        <div key={index} className="flipbook-page">
+                            <iframe
+                                src={pageUrl}
+                                width="100%"
+                                height="100%"
+                                style={{ border: 'none' }}
+                                title={`PDF Sayfa ${index + 1}`}
+                            />
+                        </div>
+                    ))
                 )}
-            </Document>
+            </HTMLFlipBook>
         </div>
     );
-    // ""
 }
 
 export default Flipbook;
